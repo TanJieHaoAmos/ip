@@ -47,24 +47,25 @@ public class AmosTalky {
         itemsList[itemCount] = new ToDo(description);
         Task currentTask = itemsList[itemCount];
         itemCount++;
-        return "Got it. I've added this task: \n" + currentTask.toString() + "\n Now you have "
-                + itemCount + " tasks in the list.";
+        return "Got it. I've added this task: \n" + currentTask.toString() + numberItemsString();
     }
 
     private String addEvent(String description, String from, String to) {
         itemsList[itemCount] = new Event(description, from, to);
         Task currentTask = itemsList[itemCount];
         itemCount++;
-        return "Got it. I've added this task: \n" + currentTask.toString() + "\n Now you have "
-                + itemCount + " tasks in the list.";
+        return "Got it. I've added this task: \n" + currentTask.toString() + numberItemsString();
     }
 
     private String addDeadline(String description, String by) {
         itemsList[itemCount] = new Deadline(description, by);
         Task currentTask = itemsList[itemCount];
         itemCount++;
-        return "Got it. I've added this task: \n" + currentTask.toString() + "\n Now you have "
-                + itemCount + " tasks in the list.";
+        return "Got it. I've added this task: \n" + currentTask.toString() + numberItemsString();
+    }
+
+    private String numberItemsString() {
+        return "\n Now you have " + itemCount + " tasks in the list.";
     }
 
 

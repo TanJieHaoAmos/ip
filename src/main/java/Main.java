@@ -13,14 +13,12 @@ public class Main {
             } else {
                     System.out.println(chat.messageAction(command, info));
                     String nextCommand = scanner.nextLine();
-                    String[] splitCommand = nextCommand.split(" ");
+                    String[] splitCommand = nextCommand.split(" ",2);
                     command = splitCommand[0];
                     info = "";
-
                     for (int i = 1; i < splitCommand.length; i++) {
-                        info += splitCommand[i];
-                        if (i + 1 < splitCommand.length) {
-                            info += " ";
+                        if(splitCommand.length == 2) {
+                            info = splitCommand[1];
                         }
                     }
             }

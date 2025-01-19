@@ -3,7 +3,7 @@ public class AmosTalky {
     private static Task[] itemsList = new Task[100];
     private static int itemCount = 0;
 
-    private String addLine(String message) {
+    private String makeLine(String message) {
         return line + message + "\n" + line;
     }
     private String welcomeMessage() {
@@ -18,14 +18,14 @@ public class AmosTalky {
     private String storeTask(String task) {
         itemsList[itemCount] = new Task(task);
         itemCount++;
-        return addLine("added: " + task);
+        return makeLine("added: " + task);
     }
 
     private String printTasks() {
         String output = "";
         for (int i = 0; i < itemCount; i++) {
             if (itemsList[i] != null) {
-                output += (i + 1) + ". " + itemsList[i].printTask() + "\n";
+                output += (i + 1) + ". " + itemsList[i].toString() + "\n";
             }
         }
         return output;
@@ -34,28 +34,61 @@ public class AmosTalky {
     private String doTask(int index) {
         Task currentTask = itemsList[index - 1];
         currentTask.markTask();
-        return "Nice! I've marked this task as done: \n" + currentTask.printTask();
+        return "Nice! I've marked this task as done: \n" + currentTask.toString();
     }
 
     private String undoTask(int index) {
         Task currentTask = itemsList[index - 1];
         currentTask.unmarkTask();
-        return "OK, I've marked this task as not done yet: \n" + currentTask.printTask();
+        return "OK, I've marked this task as not done yet: \n" + currentTask.toString();
+    }
+
+    private String addToDo(String description) {
+        itemsList[itemCount] = new ToDo(description);
+        Task currentTask = itemsList[itemCount];
+        itemCount++;
+        return "Got it. I've added this task: \n" + currentTask.toString() + "\n Now you have "
+                + itemCount + " tasks in the list.";
+    }
+
+    private String addEvent(String description, String from, String to) {
+        itemsList[itemCount] = new Event(description, from, to);
+        Task currentTask = itemsList[itemCount];
+        itemCount++;
+        return "Got it. I've added this task: \n" + currentTask.toString() + "\n Now you have "
+                + itemCount + " tasks in the list.";
+    }
+
+    private String addDeadline(String description, String by) {
+        itemsList[itemCount] = new Deadline(description, by);
+        Task currentTask = itemsList[itemCount];
+        itemCount++;
+        return "Got it. I've added this task: \n" + currentTask.toString() + "\n Now you have "
+                + itemCount + " tasks in the list.";
     }
 
 
     public String messageAction(String keyword, String details) {
         switch (keyword) {
             case "start":
-                return addLine(welcomeMessage());
+                return makeLine(welcomeMessage());
             case "bye":
-                return addLine(byeMessage());
+                return makeLine(byeMessage());
             case "list":
-                return addLine(printTasks());
+                return makeLine(printTasks());
             case "mark":
-                return addLine(doTask(Integer.parseInt(details)));
+                return makeLine(doTask(Integer.parseInt(details)));
             case "unmark":
-                return addLine(undoTask(Integer.parseInt(details)));
+                return makeLine(undoTask(Integer.parseInt(details)));
+            case "todo":
+                return makeLine(addToDo(details));
+            case "event":
+                String[] EventFront = details.split("/from");
+                String[] EventBack = EventFront[1].split(("/to"));
+                return makeLine(addEvent(EventFront[0],EventBack[0],EventBack[1]));
+            case "deadline":
+                String[] deadlineFront = details.split("/by");
+                return makeLine(addDeadline(deadlineFront[0],deadlineFront[1]));
             default:
                 return storeTask(keyword + " " + details);
         }

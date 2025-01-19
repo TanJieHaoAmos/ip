@@ -2,17 +2,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         AmosTalky chat = new AmosTalky();
-        System.out.println(chat.welcomeMessage());
         Scanner scanner = new Scanner(System.in);
-        String commandWord = scanner.nextLine();
+        String commandWord = "start";
         while (true) {
             if (commandWord.equals("bye")) {
-                System.out.println(chat.byeMessage());
-
+                System.out.println(chat.messageAction("bye"));
                 break;
             } else {
-                System.out.println((chat.echoMessage(commandWord)));
-                commandWord = scanner.nextLine();
+                    System.out.println((chat.messageAction(commandWord)));
+                    commandWord = scanner.nextLine();
             }
         }
         scanner.close();

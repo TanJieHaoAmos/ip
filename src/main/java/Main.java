@@ -6,7 +6,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String commandWord = scanner.nextLine();
         while (true) {
-            if (commandWord.equals("bye") || commandWord.equals("Bye")) {
+            if (commandWord.equals("bye")) {
                 System.out.println(chat.byeMessage());
 
                 break;

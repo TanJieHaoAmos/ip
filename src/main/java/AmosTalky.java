@@ -70,28 +70,55 @@ public class AmosTalky {
 
 
     public String messageAction(String keyword, String details) {
-        switch (keyword) {
-            case "start":
-                return makeLine(welcomeMessage());
-            case "bye":
-                return makeLine(byeMessage());
-            case "list":
-                return makeLine(printTasks());
-            case "mark":
-                return makeLine(doTask(Integer.parseInt(details)));
-            case "unmark":
-                return makeLine(undoTask(Integer.parseInt(details)));
-            case "todo":
-                return makeLine(addToDo(details));
-            case "event":
-                String[] EventFront = details.split("/from");
-                String[] EventBack = EventFront[1].split(("/to"));
-                return makeLine(addEvent(EventFront[0],EventBack[0],EventBack[1]));
-            case "deadline":
-                String[] deadlineFront = details.split("/by");
-                return makeLine(addDeadline(deadlineFront[0],deadlineFront[1]));
-            default:
-                return storeTask(keyword + " " + details);
+        try {
+            switch (keyword) {
+                case "start":
+                    return makeLine(welcomeMessage());
+                case "bye":
+                    return makeLine(byeMessage());
+                case "list":
+                    return makeLine(printTasks());
+                case "mark":
+                    int markIndex = Integer.parseInt(details);
+                    if (markIndex > itemCount) {
+                        throw new RunnyException("OOPS!!! The specified task to mark is out or range.");
+                    }
+                    return makeLine(doTask(markIndex));
+                case "unmark":
+                    int unmarkIndex = Integer.parseInt(details);
+                    if (unmarkIndex > itemCount) {
+                        throw new RunnyException("OOPS!!! The specified task to unmark is out or range.");
+                    }
+                    return makeLine(undoTask(unmarkIndex));
+                case "todo":
+                    if (details == "") {
+                        throw new RunnyException("OOPS!!! The description of a todo cannot be empty.\n");
+                    }
+                    return makeLine(addToDo(details));
+                case "event":
+                    if (details == "") {
+                        throw new RunnyException("OOPS!!! The description of an event cannot be empty.\n");
+                    }
+                    if (!details.contains("/from") || !details.contains("/to")) {
+                        throw new RunnyException("OOPS!!! The format for your given command is wrong.\n");
+                    }
+                    String[] EventFront = details.split("/from");
+                    String[] EventBack = EventFront[1].split(("/to"));
+                    return makeLine(addEvent(EventFront[0], EventBack[0], EventBack[1]));
+                case "deadline":
+                    if (details == "") {
+                        throw new RunnyException("OOPS!!! The description of a deadline cannot be empty.\n");
+                    }
+                    if (!details.contains("/by")) {
+                        throw new RunnyException("OOPS!!! The format for your given command is wrong.\n");
+                    }
+                    String[] deadlineFront = details.split("/by");
+                    return makeLine(addDeadline(deadlineFront[0], deadlineFront[1]));
+                default:
+                    throw new RunnyException("OOPS!!! I'm sorry, but I do not understand that command :-(\n");
+            }
+        } catch (RunnyException e) {
+            return makeLine(e.toString());
         }
     }
 }

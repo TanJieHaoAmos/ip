@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class AmosTalky {
     private static final String line = "____________________________________________________________\n";
-    private static Task[] itemsList = new Task[100];
+    private static ArrayList<Task> itemsList = new ArrayList<>();
     private static int itemCount = 0;
 
     private String makeLine(String message) {
@@ -16,56 +18,59 @@ public class AmosTalky {
     }
 
     private String storeTask(String task) {
-        itemsList[itemCount] = new Task(task);
-        itemCount++;
+        Task currentTask = new Task(task);
+        itemsList.add(currentTask);
         return makeLine("added: " + task);
     }
 
     private String printTasks() {
         String output = "";
-        for (int i = 0; i < itemCount; i++) {
-            if (itemsList[i] != null) {
-                output += (i + 1) + ". " + itemsList[i].toString() + "\n";
+        for (int i = 0; i < itemsList.size(); i++) {
+            if (!itemsList.isEmpty()) {
+                output += (i + 1) + ". " + itemsList.get(i).toString() + "\n";
             }
         }
         return output;
     }
 
     private String doTask(int index) {
-        Task currentTask = itemsList[index - 1];
+        Task currentTask = itemsList.get(index - 1);
         currentTask.markTask();
-        return "Nice! I've marked this task as done: \n" + currentTask.toString();
+        return "Nice! I've marked this task as done:\n" + currentTask.toString();
     }
 
     private String undoTask(int index) {
-        Task currentTask = itemsList[index - 1];
+        Task currentTask = itemsList.get(index - 1);
         currentTask.unmarkTask();
-        return "OK, I've marked this task as not done yet: \n" + currentTask.toString();
+        return "OK, I've marked this task as not done yet:\n" + currentTask.toString();
     }
 
     private String addToDo(String description) {
-        itemsList[itemCount] = new ToDo(description);
-        Task currentTask = itemsList[itemCount];
-        itemCount++;
-        return "Got it. I've added this task: \n" + currentTask.toString() + numberItemsString();
+        Task currentTask= new ToDo(description);
+        itemsList.add(currentTask);
+        return "Got it. I've added this task:\n" + currentTask.toString() + numberItemsString();
     }
 
     private String addEvent(String description, String from, String to) {
-        itemsList[itemCount] = new Event(description, from, to);
-        Task currentTask = itemsList[itemCount];
-        itemCount++;
-        return "Got it. I've added this task: \n" + currentTask.toString() + numberItemsString();
+        Task currentTask = new Event(description, from, to);
+         itemsList.add(currentTask);
+        return "Got it. I've added this task:\n" + currentTask.toString() + numberItemsString();
     }
 
     private String addDeadline(String description, String by) {
-        itemsList[itemCount] = new Deadline(description, by);
-        Task currentTask = itemsList[itemCount];
-        itemCount++;
-        return "Got it. I've added this task: \n" + currentTask.toString() + numberItemsString();
+        Task currentTask = new Deadline(description, by);
+        itemsList.add(currentTask);
+        return "Got it. I've added this task:\n" + currentTask.toString() + numberItemsString();
     }
 
     private String numberItemsString() {
-        return "\n Now you have " + itemCount + " tasks in the list.";
+        return "\nNow you have " + itemsList.size() + " tasks in the list.";
+    }
+
+    private String removeTask(int index) {
+        Task currentTask = itemsList.get(index - 1);
+        itemsList.remove(currentTask);
+        return "Noted. I've removed this task:\n" + currentTask.toString() + numberItemsString();
     }
 
 
@@ -80,13 +85,13 @@ public class AmosTalky {
                     return makeLine(printTasks());
                 case "mark":
                     int markIndex = Integer.parseInt(details);
-                    if (markIndex > itemCount) {
+                    if (markIndex > itemsList.size()) {
                         throw new RunnyException("OOPS!!! The specified task to mark is out or range.");
                     }
                     return makeLine(doTask(markIndex));
                 case "unmark":
                     int unmarkIndex = Integer.parseInt(details);
-                    if (unmarkIndex > itemCount) {
+                    if (unmarkIndex > itemsList.size()) {
                         throw new RunnyException("OOPS!!! The specified task to unmark is out or range.");
                     }
                     return makeLine(undoTask(unmarkIndex));
@@ -114,6 +119,15 @@ public class AmosTalky {
                     }
                     String[] deadlineFront = details.split("/by");
                     return makeLine(addDeadline(deadlineFront[0], deadlineFront[1]));
+                case "delete":
+                    if (details == "") {
+                        throw new RunnyException("OOPS!!! The description of a delete command cannot be empty.\n");
+                    }
+                    int deleteIndex = Integer.parseInt(details);
+                    if (deleteIndex > itemsList.size() || deleteIndex < 1) {
+                        throw new RunnyException("OOPS!!! The specified task to delete is out or range.");
+                    }
+                    return makeLine(removeTask(deleteIndex));
                 default:
                     throw new RunnyException("OOPS!!! I'm sorry, but I do not understand that command :-(\n");
             }

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Main {
+public class Runny {
     public static void main(String[] args) {
         AmosTalky chat = new AmosTalky();
         Scanner scanner = new Scanner(System.in);

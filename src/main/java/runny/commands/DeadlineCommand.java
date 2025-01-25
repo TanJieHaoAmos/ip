@@ -23,7 +23,7 @@ public class DeadlineCommand implements Command {
             throw new RunnyException("OOPS!!! The format for your given command is wrong.\n");
         }
         String[] deadlineFront = details.split("/by");
-        Task currentTask = new Deadline(deadlineFront[0], deadlineFront[1]);
+        Task currentTask = new Deadline(deadlineFront[0], deadlineFront[1].trim());
         tasks.add(currentTask);
         storage.writeToFile(tasks);
         ui.printMessage("Got it. I've added this runny.task:\n" + currentTask.toString() +

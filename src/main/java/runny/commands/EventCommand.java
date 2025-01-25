@@ -22,9 +22,9 @@ public class EventCommand implements Command {
         if (!details.contains("/from") || !details.contains("/to")) {
             throw new RunnyException("OOPS!!! The format for your given command is wrong.\n");
         }
-        String[] EventFront = details.split("/from");
-        String[] EventBack = EventFront[1].split(("/to"));
-        Task currentTask = new Event(EventFront[0], EventBack[0].trim(), EventBack[1].trim());
+        String[] eventFront = details.split("/from");
+        String[] eventBack = eventFront[1].split(("/to"));
+        Task currentTask = new Event(eventFront[0], eventBack[0].trim(), eventBack[1].trim());
         tasks.add(currentTask);
         storage.writeToFile(tasks);
         ui.printMessage("Got it. I've added this runny.task:\n" + currentTask.toString()
@@ -34,9 +34,9 @@ public class EventCommand implements Command {
 
     @Override
     public void loadTask(TaskList tasks) {
-        String[] EventFront = details.split("/from");
-        String[] EventBack = EventFront[1].split(("/to"));
-        Task currentTask = new Event(EventFront[0], EventBack[0].trim(), EventBack[1].trim());
+        String[] eventFront = details.split("/from");
+        String[] eventBack = eventFront[1].split(("/to"));
+        Task currentTask = new Event(eventFront[0], eventBack[0].trim(), eventBack[1].trim());
         tasks.add(currentTask);
     }
 

@@ -1,6 +1,7 @@
 package runny.task;
 
-import java.time.*;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
@@ -21,12 +22,13 @@ public class Deadline extends Task {
 
     @Override
     public String save() {
-        String dateTimeString = this.by.toString().replace("T"," ").replace(":","");
+        String dateTimeString = this.by.toString().replace("T", " ").replace(":", "");
         return (super.isDone ? "1 " : "0 ") + "deadline " + super.description + "/by" + dateTimeString;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
+        return "[D]" + super.toString() + " (by: "
+                + this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
     }
 }

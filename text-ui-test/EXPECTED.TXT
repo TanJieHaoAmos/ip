@@ -4,25 +4,25 @@ What can I do for you?
 ____________________________________________________________
 
 ____________________________________________________________
-Got it. I've added this task:
+Got it. I've added this runny.task:
 [T][ ] borrow book
 Now you have 1 tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
-Got it. I've added this task:
+Got it. I've added this runny.task:
 [D][ ] return book  (by:  June 6th)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
-Got it. I've added this task:
+Got it. I've added this runny.task:
 [E][ ] project meeting  (from:  Mon 2pm to:  4pm)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
-RunnyException: OOPS!!! I'm sorry, but I do not understand that command :-(
+runny.RunnyException: OOPS!!! I'm sorry, but I do not understand that command :-(
 
 ____________________________________________________________
 
@@ -34,21 +34,21 @@ ____________________________________________________________
 ____________________________________________________________
 
 ____________________________________________________________
-RunnyException: OOPS!!! The specified task to mark is out or range.
+runny.RunnyException: OOPS!!! The specified runny.task to mark is out or range.
 ____________________________________________________________
 
 ____________________________________________________________
-Nice! I've marked this task as done:
+Nice! I've marked this runny.task as done:
 [T][X] borrow book
 ____________________________________________________________
 
 ____________________________________________________________
-Nice! I've marked this task as done:
+Nice! I've marked this runny.task as done:
 [D][X] return book  (by:  June 6th)
 ____________________________________________________________
 
 ____________________________________________________________
-Nice! I've marked this task as done:
+Nice! I've marked this runny.task as done:
 [E][X] project meeting  (from:  Mon 2pm to:  4pm)
 ____________________________________________________________
 
@@ -60,34 +60,34 @@ ____________________________________________________________
 ____________________________________________________________
 
 ____________________________________________________________
-OK, I've marked this task as not done yet:
+OK, I've marked this runny.task as not done yet:
 [D][ ] return book  (by:  June 6th)
 ____________________________________________________________
 
 ____________________________________________________________
-OK, I've marked this task as not done yet:
+OK, I've marked this runny.task as not done yet:
 [T][ ] borrow book
 ____________________________________________________________
 
 ____________________________________________________________
-OK, I've marked this task as not done yet:
+OK, I've marked this runny.task as not done yet:
 [E][ ] project meeting  (from:  Mon 2pm to:  4pm)
 ____________________________________________________________
 
 ____________________________________________________________
-RunnyException: OOPS!!! The specified task to unmark is out or range.
+runny.RunnyException: OOPS!!! The specified runny.task to unmark is out or range.
 ____________________________________________________________
 
 ____________________________________________________________
-RunnyException: OOPS!!! The specified task to delete is out or range.
+runny.RunnyException: OOPS!!! The specified runny.task to delete is out or range.
 ____________________________________________________________
 
 ____________________________________________________________
-RunnyException: OOPS!!! The specified task to delete is out or range.
+runny.RunnyException: OOPS!!! The specified runny.task to delete is out or range.
 ____________________________________________________________
 
 ____________________________________________________________
-Noted. I've removed this task:
+Noted. I've removed this runny.task:
 [T][ ] borrow book
 Now you have 2 tasks in the list.
 ____________________________________________________________

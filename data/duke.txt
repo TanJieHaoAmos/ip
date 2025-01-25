@@ -1,3 +1,4 @@
 1 deadline return game /by2025-01-18 1200
-0 event project /from2025-02-01 1000/to2025-02-01 1200
+1 event project /from2025-02-01 1000/to2025-02-01 1200
 1 deadline return book /by2025-12-19 1000
+0 todo buy book

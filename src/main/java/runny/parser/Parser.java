@@ -6,13 +6,26 @@ import runny.commands.Command;
 import runny.commands.DeadlineCommand;
 import runny.commands.DeleteCommand;
 import runny.commands.EventCommand;
+import runny.commands.FindCommand;
 import runny.commands.ListCommand;
 import runny.commands.MarkCommand;
 import runny.commands.TodoCommand;
 import runny.commands.UnmarkCommand;
 
+/**
+ * Parses user input to create corresponding Command objects for Runny Chatbot.
+ * Determines the type of command based on the keyword in the input.
+ */
 
 public class Parser {
+
+    /**
+     * Parses the full user input and generates the representing Command object.
+     *
+     * @param fullCommand The full user input.
+     * @return The Command object corresponding to the user input.
+     * @throws RunnyException If the user input is not recognized.
+     */
     public static Command parse(String fullCommand) throws RunnyException {
 
         String[] splitCommand = fullCommand.split(" ", 2);

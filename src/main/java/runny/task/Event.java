@@ -4,16 +4,34 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an event task in Runny Chatbot.
+ */
+
 public class Event extends Task {
     protected LocalDateTime from;
     protected LocalDateTime to;
 
+    /**
+     * Creates an Event task with the given name, start time, and end time.
+     *
+     * @param description  The name of the event task.
+     * @param from The start time of the event as a string.
+     * @param to   The end time of the event as a string.
+     */
     public Event(String description, String from, String to) {
         super(description);
         this.from = convertTimeFrom(from);
         this.to = convertTimeTo(to);
     }
 
+    /**
+     * Converts a start time string representation to a LocalDateTime object.
+     *
+     * @param dateTime The start time as a string.
+     * @return The LocalDateTime object representing the start time.
+     * @throws DateTimeException If there's an issue parsing the time string.
+     */
     public LocalDateTime convertTimeFrom(String dateTime) throws DateTimeException {
         DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         if (!dateTime.contains(" ")) {
@@ -21,15 +39,27 @@ public class Event extends Task {
         }
         return LocalDateTime.parse(dateTime, formatDate);
     }
-    public LocalDateTime convertTimeTo(String time) throws DateTimeException {
+
+    /**
+     * Converts an end time string representation to a LocalDateTime object.
+     *
+     * @param dateTime The end time as a string.
+     * @return The LocalDateTime object representing the end time.
+     * @throws DateTimeException If there's an issue parsing the time string.
+     */
+    public LocalDateTime convertTimeTo(String dateTime) throws DateTimeException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        if (!time.contains(" ")) {
-            time += " 2359";
+        if (!dateTime.contains(" ")) {
+            dateTime += " 2359";
         }
-        return LocalDateTime.parse(time, formatter);
+        return LocalDateTime.parse(dateTime, formatter);
     }
 
-
+    /**
+     * Converts the event task to a string for saving.
+     *
+     * @return A string representation of the task for saving.
+     */
     @Override
     public String save() {
         String saveFrom = this.from.toString().replace("T", " ").replace(":", "");
@@ -37,6 +67,11 @@ public class Event extends Task {
         return (super.isDone ? "1 " : "0 ") + "event " + super.description + "/from" + saveFrom + "/to" + saveTo;
     }
 
+    /**
+     * Converts the event task to a string.
+     *
+     * @return A string representation of the task.
+     */
     @Override
     public String toString() {
 

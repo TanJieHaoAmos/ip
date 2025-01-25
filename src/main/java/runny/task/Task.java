@@ -1,3 +1,5 @@
+package runny.task;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -8,7 +10,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (this.isDone ? "X" : " "); // mark done task with X
+        return (this.isDone ? "X" : " "); // mark done runny.task with X
     }
 
     public void markTask() {
@@ -18,6 +20,11 @@ public class Task {
     public void unmarkTask() {
         this.isDone = false;
     }
+
+    public String save() {
+        return "";
+    };
+
 
     public String toString() {
         return "[" + this.getStatusIcon()  + "] " + this.description;

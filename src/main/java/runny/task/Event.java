@@ -1,3 +1,5 @@
+package runny.task;
+
 public class Event extends Task {
     protected String from;
     protected String to;
@@ -6,6 +8,11 @@ public class Event extends Task {
         super(description);
         this.from = from;
         this.to = to;
+    }
+
+    @Override
+    public String save() {
+        return (super.isDone ? "1 " : "0 ") + "event " + super.description + "/from" + this.from + "/to" + this.to;
     }
 
     @Override

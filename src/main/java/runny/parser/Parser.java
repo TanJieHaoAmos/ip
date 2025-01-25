@@ -36,6 +36,8 @@ public class Parser {
             return new DeadlineCommand(info);
         case "delete":
             return new DeleteCommand(info);
+        case "find":
+            return new FindCommand(info);
         default:
             throw new RunnyException("OOPS!!! I'm sorry, but I do not understand that command :-(\n");
         }

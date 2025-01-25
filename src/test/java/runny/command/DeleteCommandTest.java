@@ -20,7 +20,7 @@ public class DeleteCommandTest {
         TaskList tasks = new TaskList();
         DeadlineCommand testDeadline = new DeadlineCommand("borrow book /by 2025-02-01 1500");
         testDeadline.loadTask(tasks);
-        new DeleteCommand("1").doCommand(new Ui(), new Storage("data/duke.txt"), tasks);
+        new DeleteCommand("1").doCommand(new Ui(), new Storage("./data/testCase.txt"), tasks);
         assertEquals(0, tasks.size());
     }
 }

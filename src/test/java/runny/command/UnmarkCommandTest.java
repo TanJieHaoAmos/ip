@@ -1,12 +1,14 @@
 package runny.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
 import runny.RunnyException;
 import runny.storage.Storage;
 import runny.task.TaskList;
 import runny.ui.Ui;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class UnmarkCommandTest {
     @Test
@@ -18,7 +20,7 @@ public class UnmarkCommandTest {
         assertThrows(RunnyException.class, () -> new UnmarkCommand("2").doCommand(null, null, new TaskList()));
     }
     @Test
-    public void UnmarkTaskTest() throws RunnyException{
+    public void unmarkTaskTest() throws RunnyException {
         TaskList tasks = new TaskList();
         TodoCommand testUnmarkCommand = new TodoCommand("sell food");
         testUnmarkCommand.loadTask(tasks);

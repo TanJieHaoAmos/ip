@@ -15,14 +15,15 @@ public class TodoCommand implements Command {
     }
 
     @Override
-    public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException{
+    public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException {
         if (details == "") {
             throw new RunnyException("OOPS!!! The description of a todo cannot be empty.\n");
         }
-        Task currentTask= new Todo(details);
+        Task currentTask = new Todo(details);
         tasks.add(currentTask);
         storage.writeToFile(tasks);
-        ui.printMessage("Got it. I've added this runny.task:\n" + currentTask.toString() + "\nNow you have " + tasks.size() + " tasks in the list.");
+        ui.printMessage("Got it. I've added this runny.task:\n" + currentTask.toString() + "\nNow you have "
+                + tasks.size() + " tasks in the list.");
     }
 
     @Override

@@ -1,11 +1,13 @@
 package runny;
 
+import java.time.DateTimeException;
+
 import runny.commands.Command;
 import runny.parser.Parser;
 import runny.storage.Storage;
 import runny.task.TaskList;
 import runny.ui.Ui;
-import java.time.DateTimeException;
+
 
 public class Runny {
 
@@ -28,7 +30,7 @@ public class Runny {
     public void run() {
 
         boolean endProgram = false;
-        while(!endProgram) {
+        while (!endProgram) {
             try {
                 String fullCommand = ui.processCommand();
                 Command c = Parser.parse(fullCommand);

@@ -36,7 +36,7 @@ public class EventCommand implements Command {
     public void loadTask(TaskList tasks) {
         String[] EventFront = details.split("/from");
         String[] EventBack = EventFront[1].split(("/to"));
-        Task currentTask = new Event(EventFront[0], EventBack[0], EventBack[1]);
+        Task currentTask = new Event(EventFront[0], EventBack[0].trim(), EventBack[1].trim());
         tasks.add(currentTask);
     }
 

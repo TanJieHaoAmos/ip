@@ -24,7 +24,7 @@ public class EventCommand implements Command {
         }
         String[] EventFront = details.split("/from");
         String[] EventBack = EventFront[1].split(("/to"));
-        Task currentTask = new Event(EventFront[0], EventBack[0], EventBack[1]);
+        Task currentTask = new Event(EventFront[0], EventBack[0].trim(), EventBack[1].trim());
         tasks.add(currentTask);
         storage.writeToFile(tasks);
         ui.printMessage("Got it. I've added this runny.task:\n" + currentTask.toString()

@@ -5,6 +5,7 @@ import runny.parser.Parser;
 import runny.storage.Storage;
 import runny.task.TaskList;
 import runny.ui.Ui;
+import java.time.DateTimeException;
 
 public class Runny {
 
@@ -33,7 +34,7 @@ public class Runny {
                 Command c = Parser.parse(fullCommand);
                 c.doCommand(ui, storage, tasks);
                 endProgram = c.endProgram();
-            } catch (RunnyException e) {
+            } catch (RunnyException | DateTimeException e) {
                 ui.printMessage(e.getMessage());
             }
         }

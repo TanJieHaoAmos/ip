@@ -17,12 +17,12 @@ public class MarkCommand implements Command {
     public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException {
         int markIndex = Integer.parseInt(details) - 1;
         if (markIndex >= tasks.size() || markIndex < 0) {
-            throw new RunnyException("OOPS!!! The specified runny.task to mark is out of range.");
+            throw new RunnyException("OOPS!!! The specified task to mark is out of range.");
         }
         Task currentTask = tasks.get(markIndex);
         currentTask.markTask();
         storage.writeToFile(tasks);
-        ui.printMessage("Nice! I've marked this runny.task as done:\n" + currentTask.toString());
+        ui.printMessage("Nice! I've marked this task as done:\n" + currentTask.toString());
     }
 
     @Override

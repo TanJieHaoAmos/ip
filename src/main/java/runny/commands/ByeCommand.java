@@ -1,8 +1,12 @@
 package runny.commands;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
+import javafx.util.Duration;
 import runny.storage.Storage;
 import runny.task.TaskList;
 import runny.ui.Ui;
+
 
 /**
  * Displays a goodbye message
@@ -20,7 +24,8 @@ public class ByeCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) {
-        ui.byeMessage();
+        ui.printMessage("Bye. It has been a pleasure to serve you!\nShutting down...");
+        closeChatbot();
     }
 
     /**
@@ -34,14 +39,14 @@ public class ByeCommand implements Command {
     }
 
     /**
-     * Indicates that the command is an exit command.
-     *
-     * @return `true` which tells the application to exit.
+     * Closes the chatbot after two seconds of delay pause.
      */
-
-    @Override
-    public boolean endProgram() {
-
-        return true;
+    public void closeChatbot() {
+        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        pause.setOnFinished(event -> {
+            Platform.exit();
+        });
+        pause.play();
     }
+
 }

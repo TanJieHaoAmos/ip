@@ -34,12 +34,12 @@ public class UnmarkCommand implements Command {
     public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException {
         int unmarkIndex = Integer.parseInt(details) - 1;
         if (unmarkIndex >= tasks.size() || unmarkIndex < 0) {
-            throw new RunnyException("OOPS!!! The specified runny.task to unmark is out or range.");
+            throw new RunnyException("OOPS!!! The specified task to unmark is out or range.");
         }
         Task currentTask = tasks.get(unmarkIndex);
         currentTask.unmarkTask();
         storage.writeToFile(tasks);
-        ui.printMessage("OK, I've marked this runny.task as not done yet:\n" + currentTask.toString());
+        ui.printMessage("OK, I've marked this task as not done yet:\n" + currentTask.toString());
     }
 
     /**
@@ -52,13 +52,5 @@ public class UnmarkCommand implements Command {
 
     }
 
-    /**
-     * Indicates that this command is not an exit command.
-     *
-     * @return `false` indicating that the application should not exit.
-     */
-    @Override
-    public boolean endProgram() {
-        return false;
-    }
+
 }

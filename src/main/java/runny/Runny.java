@@ -17,9 +17,9 @@ import runny.ui.Ui;
 
 public class Runny {
 
+    private Ui ui;
     private Storage storage;
     private TaskList tasks = new TaskList();
-    private Ui ui;
 
     /**
      * Creates a Runny instance with the provided file path.
@@ -30,7 +30,6 @@ public class Runny {
     public Runny(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
-        ui.welcomeMessage();
         try {
             this.tasks = this.storage.load();
         } catch (RunnyException e) {
@@ -40,32 +39,25 @@ public class Runny {
     }
 
     /**
-     * Runs the chatbot
-     * Displays a welcome messages
-     * Processes user commands.
+     * Returns the Ui instance that was created.
      */
-    public void run() {
 
-        boolean endProgram = false;
-        while (!endProgram) {
-            try {
-                String fullCommand = ui.processCommand();
-                Command c = Parser.parse(fullCommand);
-                c.doCommand(ui, storage, tasks);
-                endProgram = c.endProgram();
-            } catch (RunnyException | DateTimeException e) {
-                ui.printMessage(e.getMessage());
-            }
-        }
+    public Ui getUi() {
+        return this.ui;
     }
 
     /**
-     * The starting point of Runny chatbot.
-     *
-     * @param args Command-line arguments.
+     * Runs the chatbot and processes user commands.
+     * @param input The user input.
      */
+    public void run(String input) {
+        try {
 
-    public static void main(String[] args) {
-        new Runny("./data/duke.txt").run();
+            Command c = Parser.parse(input);
+            c.doCommand(ui, storage, tasks);
+
+        } catch (RunnyException | DateTimeException e) {
+            ui.printMessage(e.getMessage());
+        }
     }
 }

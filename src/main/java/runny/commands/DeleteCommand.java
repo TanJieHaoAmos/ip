@@ -38,7 +38,7 @@ public class DeleteCommand implements Command {
         }
 
         if (deleteIndex >= tasks.size() || deleteIndex < 0) {
-            throw new RunnyException("OOPS!!! The specified runny.task to delete is out or range.");
+            throw new RunnyException("OOPS!!! The specified task to delete is out or range.");
         }
         Task currentTask = tasks.get(deleteIndex);
         tasks.remove(currentTask);
@@ -57,13 +57,5 @@ public class DeleteCommand implements Command {
 
     }
 
-    /**
-     * Indicates that this command is not an exit command.
-     *
-     * @return `false` indicating that the application should not exit.
-     */
-    @Override
-    public boolean endProgram() {
-        return false;
-    }
+
 }

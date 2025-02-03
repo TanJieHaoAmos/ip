@@ -27,11 +27,6 @@ public interface Command {
      */
     public void loadTask(TaskList tasks);
 
-    /**
-     * Checks whether the command signifies an application exit.
-     *
-     * @return `true` if the command indicates an exit, otherwise `false`.
-     */
-    public boolean endProgram();
+
 
 }

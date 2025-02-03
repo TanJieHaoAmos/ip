@@ -49,15 +49,6 @@ public class FindCommand implements Command {
 
     }
 
-    /**
-     * Indicates that this command is not an exit command.
-     *
-     * @return `false` indicating that the application should not exit.
-     */
-    @Override
-    public boolean endProgram() {
-        return false;
-    }
 
 
 }

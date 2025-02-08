@@ -48,7 +48,7 @@ public class DeadlineCommand implements Command {
         tasks.add(currentTask);
         this.indexTask = tasks.size();
         storage.writeToFile(tasks);
-        ui.printMessage("Got it. I've added this runny.task:\n" + currentTask.toString()
+        ui.printMessage("Got it. I've added this task:\n" + currentTask.toString()
                 + "\nNow you have " + tasks.size() + " tasks in the list.");
     }
 

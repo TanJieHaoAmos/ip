@@ -32,6 +32,8 @@ public class DeleteCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException {
+        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
+                "ui,storage or tasks is null";
         int deleteIndex = Integer.parseInt(details) - 1;
         if (details == "") {
             throw new RunnyException("OOPS!!! The description of a delete command cannot be empty.\n");

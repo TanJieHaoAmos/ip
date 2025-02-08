@@ -27,7 +27,7 @@ public class Parser {
      * @throws RunnyException If the user input is not recognized.
      */
     public static Command parse(String fullCommand) throws RunnyException {
-
+        assert fullCommand != null;
         String[] splitCommand = fullCommand.split(" ", 2);
         String command = splitCommand[0];
         String info = "";

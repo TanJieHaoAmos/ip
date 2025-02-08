@@ -10,7 +10,6 @@ import runny.ui.Ui;
 /**
  * Adds a new Event task to the task list.
  */
-
 public class EventCommand implements Command {
     private String details;
 
@@ -34,6 +33,8 @@ public class EventCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException {
+        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
+                "ui,storage or tasks is null";
         if (details == "") {
             throw new RunnyException("OOPS!!! The description of an event cannot be empty.\n");
         }

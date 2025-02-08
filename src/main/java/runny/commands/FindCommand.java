@@ -30,6 +30,8 @@ public class FindCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) {
+        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
+                "ui,storage or tasks is null";
         String output = "Here are the matching tasks in your list:";
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getDescription().contains(details)) {

@@ -27,14 +27,29 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/chatbotUser.png"));
     private Image runnyImage = new Image(this.getClass().getResourceAsStream("/images/chatbotRunny.png"));
 
+    /**
+     * Initializes the MainWindow.
+     * Displays a welcome message to the user.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        displayWelcomeMessage();
     }
 
     /** Injects the Runny instance */
     public void setRunny(Runny r) {
         runny = r;
+    }
+
+
+    /**
+     * Displays a welcome message for the user.
+     *
+     */
+    public void displayWelcomeMessage() {
+        dialogContainer.getChildren().add(DialogBox.getRunnyDialog("Hello! I'm Runny, here to help with your " +
+                "tasks tracking!\nPlease enter a command.", runnyImage));
     }
 
     /**

@@ -54,7 +54,7 @@ public class Storage {
             }
             return list;
         } catch (FileNotFoundException e) {
-            File newFile = new File(filePath);
+            createFile();
             return list;
         } catch (IOException e) {
             throw new RunnyException("OOPS!! I am unable to load the data in the specified file.");
@@ -69,6 +69,7 @@ public class Storage {
      */
     public void writeToFile(TaskList taskList) throws RunnyException {
         try {
+            createFile();
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, false));
             for (Task t : taskList) {
                 writer.write(t.save() + "\n");
@@ -76,6 +77,22 @@ public class Storage {
             writer.close();
         } catch (IOException e) {
             throw new RunnyException("Unable to write to file");
+        }
+    }
+
+    /**
+     * Creates a file to save data based on the filepath if no existing file is found.
+     * @throws RunnyException
+     */
+    public void createFile() throws RunnyException {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            try {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RunnyException("Unable to create file safely.");
+            }
         }
     }
 }

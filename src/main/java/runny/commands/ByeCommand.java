@@ -3,9 +3,11 @@ package runny.commands;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.util.Duration;
+import runny.RunnyException;
 import runny.storage.Storage;
 import runny.task.TaskList;
 import runny.ui.Ui;
+
 
 
 /**
@@ -23,9 +25,9 @@ public class ByeCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) {
-        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
-                "ui,storage or tasks is null";
-        ui.printMessage("Bye. It has been a pleasure to serve you!\nShutting down...");
+        assert ui != null && storage != null && tasks != null : "One of the three objects, "
+                + "ui,storage or tasks is null";
+        ui.printMessage("It has been my pleasure to serve you!\nGoodbyeee...");
         closeChatbot();
     }
 
@@ -49,5 +51,18 @@ public class ByeCommand implements Command {
         });
         pause.play();
     }
+
+    /**
+     * Does nothing.
+     *
+     * @param tasks The list of tasks.
+     * @return The command to be executed.
+     * @throws RunnyException If an error occurs during command execution.
+     */
+    @Override
+    public Command undoTask(TaskList tasks) throws RunnyException {
+        return new BlankCommand();
+    }
+
 
 }

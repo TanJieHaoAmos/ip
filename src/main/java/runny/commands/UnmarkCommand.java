@@ -23,7 +23,7 @@ public class UnmarkCommand implements Command {
 
     /**
      * Executes command by unmarking a task as not completed in the task list.
-     * Displays relevant messages to the user.
+     * Displays relevant messages to the user, saves the unmarked task to the local file.
      *
      * @param ui      The user interface for displaying messages.
      * @param storage The storage for saving task data after modification.
@@ -32,8 +32,8 @@ public class UnmarkCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException {
-        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
-                "ui,storage or tasks is null";
+        assert ui != null && storage != null && tasks != null : "One of the three objects, "
+                + "ui,storage or tasks is null";
         int unmarkIndex = Integer.parseInt(details) - 1;
         if (unmarkIndex >= tasks.size() || unmarkIndex < 0) {
             throw new RunnyException("OOPS!!! The specified task to unmark is out or range.");
@@ -52,6 +52,18 @@ public class UnmarkCommand implements Command {
     @Override
     public void loadTask(TaskList tasks) {
 
+    }
+
+    /**
+     * Undoes the UnmarkCommand and marks the completion of the task in the task list.
+     *
+     * @param tasks The list of tasks to which the task will be mark.
+     * @return The command to be executed.
+     * @throws RunnyException If an error occurs during command execution.
+     */
+    @Override
+    public Command undoTask(TaskList tasks) throws RunnyException {
+        return new MarkCommand(this.details);
     }
 
 

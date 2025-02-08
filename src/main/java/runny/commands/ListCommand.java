@@ -19,6 +19,8 @@ public class ListCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) {
+        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
+                "ui,storage or tasks is null";
         String output = "";
         for (int i = 0; i < tasks.size(); i++) {
             if (!tasks.isEmpty()) {

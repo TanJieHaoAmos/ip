@@ -32,6 +32,8 @@ public class MarkCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException {
+        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
+                "ui,storage or tasks is null";
         int markIndex = Integer.parseInt(details) - 1;
         if (markIndex >= tasks.size() || markIndex < 0) {
             throw new RunnyException("OOPS!!! The specified task to mark is out of range.");

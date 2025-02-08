@@ -12,11 +12,10 @@ import runny.ui.Ui;
  * Displays a goodbye message
  * The application exits after this commands is executed.
  */
-
 public class ByeCommand implements Command {
 
     /**
-     * Executes command by displaying a farewell message to the user.
+     * Executes command by displaying a goodbye message to the user.
      *
      * @param ui      user interface for interacting with users.
      * @param storage The storage for writing and reading data.
@@ -24,6 +23,8 @@ public class ByeCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) {
+        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
+                "ui,storage or tasks is null";
         ui.printMessage("Bye. It has been a pleasure to serve you!\nShutting down...");
         closeChatbot();
     }
@@ -39,7 +40,7 @@ public class ByeCommand implements Command {
     }
 
     /**
-     * Closes the chatbot after two seconds of delay pause.
+     * Closes the chatbot after two seconds of delay.
      */
     public void closeChatbot() {
         PauseTransition pause = new PauseTransition(Duration.seconds(3));

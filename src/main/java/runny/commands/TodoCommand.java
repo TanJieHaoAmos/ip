@@ -33,6 +33,8 @@ public class TodoCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException {
+        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
+                "ui,storage or tasks is null";
         if (details == "") {
             throw new RunnyException("OOPS!!! The description of a todo cannot be empty.\n");
         }

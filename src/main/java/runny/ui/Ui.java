@@ -4,7 +4,6 @@ package runny.ui;
  * User interface class responsible for interacting with the user.
  * Provides methods to display messages and read user commands.
  */
-
 public class Ui {
     private String output;
 

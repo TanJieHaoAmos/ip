@@ -14,7 +14,6 @@ import runny.ui.Ui;
  * Some things that it can do includes adding todo, events, deadlines.
  * It can also delete and find tasks as well as mark and unmark tasks.
  */
-
 public class Runny {
 
     private Ui ui;
@@ -26,7 +25,6 @@ public class Runny {
      *
      * @param filePath The file path for storing task data.
      */
-
     public Runny(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -41,7 +39,6 @@ public class Runny {
     /**
      * Returns the Ui instance that was created.
      */
-
     public Ui getUi() {
         return this.ui;
     }

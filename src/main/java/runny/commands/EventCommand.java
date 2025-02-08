@@ -10,7 +10,6 @@ import runny.ui.Ui;
 /**
  * Adds a new Event task to the task list.
  */
-
 public class EventCommand implements Command {
     private String details;
 

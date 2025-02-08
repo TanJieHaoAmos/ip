@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents an event task in Runny Chatbot.
  */
-
 public class Event extends Task {
     protected LocalDateTime from;
     protected LocalDateTime to;

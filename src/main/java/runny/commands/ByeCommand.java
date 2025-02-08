@@ -12,7 +12,6 @@ import runny.ui.Ui;
  * Displays a goodbye message
  * The application exits after this commands is executed.
  */
-
 public class ByeCommand implements Command {
 
     /**

@@ -10,6 +10,7 @@ import runny.commands.FindCommand;
 import runny.commands.ListCommand;
 import runny.commands.MarkCommand;
 import runny.commands.TodoCommand;
+import runny.commands.UndoCommand;
 import runny.commands.UnmarkCommand;
 
 /**
@@ -56,6 +57,8 @@ public class Parser {
             return new DeleteCommand(info);
         case "find":
             return new FindCommand(info);
+        case "undo":
+            return new UndoCommand();
         default:
             throw new RunnyException("OOPS!!! I'm sorry, but I do not understand that command :-(\n");
         }

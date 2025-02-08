@@ -48,8 +48,8 @@ public class MainWindow extends AnchorPane {
      *
      */
     public void displayWelcomeMessage() {
-        dialogContainer.getChildren().add(DialogBox.getRunnyDialog("Hello! I'm Runny, here to help with your " +
-                "tasks tracking!\nPlease enter a command.", runnyImage));
+        dialogContainer.getChildren().add(DialogBox.getRunnyDialog("Hello! I'm Runny, here to help with your "
+                + "tasks tracking!\nPlease enter a command.", runnyImage));
     }
 
     /**

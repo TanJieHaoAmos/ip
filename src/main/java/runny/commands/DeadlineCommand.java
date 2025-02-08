@@ -11,6 +11,7 @@ import runny.ui.Ui;
  * Adds a new Deadline task to the task list.
  */
 public class DeadlineCommand implements Command {
+    private int indexTask;
     private String details;
 
     /**
@@ -20,11 +21,12 @@ public class DeadlineCommand implements Command {
      */
     public DeadlineCommand(String details) {
         this.details = details;
+        this.indexTask = 0;
     }
 
     /**
      * Executes command by creating and adding a Deadline task to the task list.
-     * Displays relevant messages to the user.
+     * Displays relevant messages to the user, saves the task to the local file.
      *
      * @param ui      The user interface for displaying messages.
      * @param storage The storage for saving task data after modification.
@@ -33,8 +35,8 @@ public class DeadlineCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException {
-        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
-                "ui,storage or tasks is null";
+        assert ui != null && storage != null && tasks != null : "One of the three objects, "
+                + "ui,storage or tasks is null";
         if (details == "") {
             throw new RunnyException("OOPS!!! The description of a deadline cannot be empty.\n");
         }
@@ -44,9 +46,10 @@ public class DeadlineCommand implements Command {
         String[] deadlineFront = details.split("/by");
         Task currentTask = new Deadline(deadlineFront[0], deadlineFront[1].trim());
         tasks.add(currentTask);
+        this.indexTask = tasks.size();
         storage.writeToFile(tasks);
         ui.printMessage("Got it. I've added this runny.task:\n" + currentTask.toString()
-                + "\nNow you have " + Integer.toString(tasks.size()) + " tasks in the list.");
+                + "\nNow you have " + tasks.size() + " tasks in the list.");
     }
 
     /**
@@ -59,6 +62,18 @@ public class DeadlineCommand implements Command {
         String[] partDeadline = details.split("/by");
         Task curr = new Deadline(partDeadline[0], partDeadline[1].trim());
         tasks.add(curr);
+    }
+
+    /**
+     * Undoes the DeadlineCommand and removes the tasks from the task list.
+     *
+     * @param tasks The list of tasks to which the task will be deleted.
+     * @return The command to be executed.
+     * @throws RunnyException If an error occurs during command execution.
+     */
+    @Override
+    public Command undoTask(TaskList tasks) throws RunnyException {
+        return new DeleteCommand(Integer.toString(this.indexTask));
     }
 
 }

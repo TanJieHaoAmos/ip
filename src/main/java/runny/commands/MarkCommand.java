@@ -23,7 +23,7 @@ public class MarkCommand implements Command {
 
     /**
      * Executes command by marking a task as completed in the task list.
-     * Displays relevant messages to the user.
+     * Displays relevant messages to the user, saves the marked task to the local file.
      *
      * @param ui      The user interface for displaying messages.
      * @param storage The storage for saving task data after modification.
@@ -32,8 +32,8 @@ public class MarkCommand implements Command {
      */
     @Override
     public void doCommand(Ui ui, Storage storage, TaskList tasks) throws RunnyException {
-        assert ui != null && storage != null && tasks != null : "One of the three objects, " +
-                "ui,storage or tasks is null";
+        assert ui != null && storage != null && tasks != null : "One of the three objects, "
+                + "ui,storage or tasks is null";
         int markIndex = Integer.parseInt(details) - 1;
         if (markIndex >= tasks.size() || markIndex < 0) {
             throw new RunnyException("OOPS!!! The specified task to mark is out of range.");
@@ -52,6 +52,18 @@ public class MarkCommand implements Command {
     @Override
     public void loadTask(TaskList tasks) {
 
+    }
+
+    /**
+     * Undoes the MarkCommand and unmarks the completion of the task in the task list.
+     *
+     * @param tasks The list of tasks.
+     * @return The command to be executed.
+     * @throws RunnyException If an error occurs during command execution.
+     */
+    @Override
+    public Command undoTask(TaskList tasks) throws RunnyException {
+        return new UnmarkCommand(this.details);
     }
 
 }

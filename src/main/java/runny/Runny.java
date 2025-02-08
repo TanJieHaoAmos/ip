@@ -3,6 +3,7 @@ package runny;
 import java.time.DateTimeException;
 
 import runny.commands.Command;
+import runny.commands.UndoCommand;
 import runny.parser.Parser;
 import runny.storage.Storage;
 import runny.task.TaskList;
@@ -49,10 +50,9 @@ public class Runny {
      */
     public void run(String input) {
         try {
-
             Command c = Parser.parse(input);
             c.doCommand(ui, storage, tasks);
-
+            UndoCommand.saveCommand(c);
         } catch (RunnyException | DateTimeException e) {
             ui.printMessage(e.getMessage());
         }

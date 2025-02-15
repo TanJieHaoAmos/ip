@@ -42,7 +42,7 @@ public class DeadlineCommand implements Command {
         }
         if (!details.contains("/by")) {
             throw new RunnyException("OOPS!!! The format for your given command is wrong.\n"
-                    + "Please use the following format: deadline /by <details>");
+                    + "Please use the following format: deadline <name> /by YYYY-MM-DD HHMM");
         }
         String[] deadlineFront = details.split("/by");
         Task currentTask = new Deadline(deadlineFront[0], deadlineFront[1].trim());

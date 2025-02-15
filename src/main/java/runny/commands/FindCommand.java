@@ -36,9 +36,9 @@ public class FindCommand implements Command {
         String output = "Here are the matching tasks in your list:";
         int count = 0;
         if (tasks.isEmpty()) {
-           output = "There are no tasks in your list that matches the keyword you are finding for.";
-           ui.printMessage(output);
-           return;
+            output = "There are no tasks in your list that matches the keyword you are finding for.";
+            ui.printMessage(output);
+            return;
         }
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getDescription().contains(details)) {

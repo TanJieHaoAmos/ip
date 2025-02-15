@@ -49,7 +49,9 @@ public class MainWindow extends AnchorPane {
      */
     public void displayWelcomeMessage() {
         dialogContainer.getChildren().add(DialogBox.getRunnyDialog("Hello! I'm Runny, here to help with your "
-                + "tasks tracking!\nPlease enter a command.", runnyImage));
+                + "tasks tracking!\nPlease enter a command.\n"
+                + "Here are the available commands:\n"
+                + "list, mark, unmark, todo, event, deadline, find, bye", runnyImage));
     }
 
     /**

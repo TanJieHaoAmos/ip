@@ -23,6 +23,11 @@ public class ListCommand implements Command {
         assert ui != null && storage != null && tasks != null : "One of the three objects, "
                 + "ui,storage or tasks is null";
         String output = "";
+        if (tasks.isEmpty()) {
+            output = "There are no tasks in your list.";
+            ui.printMessage(output);
+            return;
+        }
         for (int i = 0; i < tasks.size(); i++) {
             if (!tasks.isEmpty()) {
                 output += (i + 1) + ". " + tasks.get(i).toString() + "\n";

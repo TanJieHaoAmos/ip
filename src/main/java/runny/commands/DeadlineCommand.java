@@ -41,7 +41,8 @@ public class DeadlineCommand implements Command {
             throw new RunnyException("OOPS!!! The description of a deadline cannot be empty.\n");
         }
         if (!details.contains("/by")) {
-            throw new RunnyException("OOPS!!! The format for your given command is wrong.\n");
+            throw new RunnyException("OOPS!!! The format for your given command is wrong.\n"
+                    + "Please use the following format: deadline /by <details>");
         }
         String[] deadlineFront = details.split("/by");
         Task currentTask = new Deadline(deadlineFront[0], deadlineFront[1].trim());

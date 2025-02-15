@@ -34,10 +34,22 @@ public class FindCommand implements Command {
         assert ui != null && storage != null && tasks != null : "One of the three objects, "
                 + "ui,storage or tasks is null";
         String output = "Here are the matching tasks in your list:";
+        int count = 0;
+        if (tasks.isEmpty()) {
+           output = "There are no tasks in your list that matches the keyword you are finding for.";
+           ui.printMessage(output);
+           return;
+        }
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getDescription().contains(details)) {
                 output += "\n" + (i + 1) + "." + tasks.get(i).toString();
+                count++;
             }
+        }
+        if (count == 0) {
+            output = "There are no tasks in your lists that matches the keyword you are finding for.";
+            ui.printMessage(output);
+            return;
         }
         ui.printMessage(output.toString());
     }

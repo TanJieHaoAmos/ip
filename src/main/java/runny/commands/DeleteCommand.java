@@ -42,7 +42,7 @@ public class DeleteCommand implements Command {
         }
 
         if (deleteIndex >= tasks.size() || deleteIndex < 0) {
-            throw new RunnyException("OOPS!!! The specified task to delete is out or range.");
+            throw new RunnyException("OOPS!!! The specified task to delete is out of range.");
         }
         Task currentTask = tasks.get(deleteIndex);
         this.deletedTask = currentTask;

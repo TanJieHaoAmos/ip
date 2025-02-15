@@ -42,7 +42,9 @@ public class EventCommand implements Command {
             throw new RunnyException("OOPS!!! The description of an event cannot be empty.\n");
         }
         if (!details.contains("/from") || !details.contains("/to")) {
-            throw new RunnyException("OOPS!!! The format for your given command is wrong.\n");
+            throw new RunnyException("OOPS!!! The format for your given command is wrong.\n"
+                    + "Please use the following format:\nevent <eventName> /from YYYY-MM-DD HHMM "
+                    + "/to YYYY-MM-DD HHMM");
         }
         String[] eventFront = details.split("/from");
         String[] eventBack = eventFront[1].split(("/to"));

@@ -25,7 +25,7 @@ public interface Command {
      *
      * @param tasks The list of task
      */
-    public void loadTask(TaskList tasks);
+    public void loadTask(TaskList tasks) throws RunnyException;
 
     /**
      * Reverts the effect of the executed command.

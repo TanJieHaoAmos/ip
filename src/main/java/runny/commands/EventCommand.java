@@ -63,7 +63,7 @@ public class EventCommand implements Command {
      * @param tasks The list of tasks to which the new task will be added.
      */
     @Override
-    public void loadTask(TaskList tasks) {
+    public void loadTask(TaskList tasks) throws RunnyException {
         String[] eventFront = details.split("/from");
         String[] eventBack = eventFront[1].split(("/to"));
         Task currentTask = new Event(eventFront[0], eventBack[0].trim(), eventBack[1].trim());

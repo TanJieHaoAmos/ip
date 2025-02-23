@@ -3,6 +3,7 @@ package runny.task;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import runny.RunnyException;
 
 /**
  * Represents an event task in Runny Chatbot.
@@ -18,10 +19,13 @@ public class Event extends Task {
      * @param from The start time of the event as a string.
      * @param to   The end time of the event as a string.
      */
-    public Event(String description, String from, String to) {
+    public Event(String description, String from, String to) throws RunnyException {
         super(description);
         this.from = convertTimeFrom(from);
         this.to = convertTimeTo(to);
+        if (this.from.isAfter(this.to)) {
+            throw new RunnyException("The time period is invalid");
+        }
     }
 
     /**

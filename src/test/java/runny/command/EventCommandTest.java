@@ -14,7 +14,7 @@ public class EventCommandTest {
         assertThrows(RunnyException.class, () -> new EventCommand("").doCommand(null, null, null));
     }
     @Test
-    public void testEventLoad() {
+    public void testEventLoad() throws RunnyException {
         TaskList tasks = new TaskList();
         EventCommand testEventCommand = new EventCommand("read book /from 2025-01-20 1800 /to 2025-02-01 1800");
         testEventCommand.loadTask(tasks);
